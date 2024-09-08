@@ -1,0 +1,5 @@
+site_name: 示例项目文档
+nav:
+  - 首页: index.md
+theme: readthedocs
+site_dir: docs

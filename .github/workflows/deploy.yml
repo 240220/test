@@ -1,0 +1,32 @@
+name: Deploy MkDocs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install MkDocs
+      run: pip install mkdocs
+
+    - name: Build MkDocs site
+      run: mkdocs build
+
+    - name: Deploy to main branch
+      run: |
+        rm -rf docs
+        mv site docs
+        git config --global user.name 'github-actions[bot]'
+        git push origin main
