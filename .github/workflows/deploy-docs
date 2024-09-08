@@ -30,7 +30,9 @@ jobs:
       run: mkdocs build
 
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.MY_SECRET }}
-        publish_dir: ./site
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+        git add .
+        git commit -m "Deploy MkDocs site"
+        git push origin main
