@@ -26,7 +26,7 @@ jobs:
 
     - name: Deploy to main branch
       env:
-        MY_SECRET: ${{ secrets.MY_SECRET }}
+        DEPLOY: ${{ secrets.DEPLOY }}
       run: |
         rm -rf docs
         mv site docs
@@ -34,4 +34,4 @@ jobs:
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git add docs
         git commit -m 'Deploy MkDocs site'
-        git push https://x-access-token:${{ secrets.MY_SECRET }}@github.com/${{ github.repository }}.git main
+        git push https://x-access-token:${{ secrets.DEPLOY }}@github.com/${{ github.repository }}.git main
