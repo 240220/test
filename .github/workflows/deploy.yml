@@ -24,15 +24,8 @@ jobs:
     - name: Build MkDocs site
       run: mkdocs build
 
-    - name: Deploy to main branch
-      env:
-        DEPLOY: ${{ secrets.DEPLOY }}
-      run: |
-        rm -rf docs
-        mv site docs
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git remote set-url origin https://x-access-token:${{ secrets.DEPLOY }}@github.com/${{ github.repository }}.git
-        git add docs
-        git commit -m 'Deploy MkDocs site'
-        git push origin main
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.DEPLOY }}
+        publish_dir: ./docs
