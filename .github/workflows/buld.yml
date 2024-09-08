@@ -30,6 +30,8 @@ jobs:
       run: mkdocs build
 
     - name: Ensure gh-pages branch exists
+      env:
+        GITHUB_TOKEN: ${{ secrets.MY_SECRET }}
       run: |
         git fetch origin
         if ! git rev-parse --verify origin/gh-pages; then
