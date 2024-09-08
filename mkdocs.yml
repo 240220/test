@@ -1,5 +1,0 @@
-site_name: 项目文档
-nav:
-  - 首页: index.md
-theme: material
-site_dir: docs
